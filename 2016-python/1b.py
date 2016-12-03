@@ -4,6 +4,7 @@ Advent of Code 2016 solution - part 2
 """
 
 import os.path
+
 DIR_NAME = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 FILE_NAME = open(DIR_NAME + "/2016-inputs/1.txt")
 FILE_LINE = FILE_NAME.readline()
@@ -34,7 +35,8 @@ def solve(data):
             if bearing is 3:
                 pos_x -= 1
             if (pos_x, pos_y) in pos_seen:
-                return(abs(pos_x) + abs(pos_y))
+                return (abs(pos_x) + abs(pos_y))
             pos_seen.append((pos_x, pos_y))
+
 
 print(solve(DATA))
