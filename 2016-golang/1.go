@@ -20,9 +20,9 @@ func main() {
 	check(error)
 	defer file.Close()
 
-	pos_x := float64(0)
+	posX := float64(0)
 
-	pos_y := float64(0)
+	posY := float64(0)
 	bearing := float64(0) // 0 = N, 1 = E, 2 = S, 3 = W
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -41,9 +41,9 @@ func main() {
 			check(err)
 
 			if turn == "R" {
-				bearing = math.Mod(bearing+1, 4)
+				bearing = math.Mod(bearing + 1, 4)
 			} else if turn == "L" {
-				bearing = math.Mod(bearing-1, 4)
+				bearing = math.Mod(bearing - 1, 4)
 			}
 
 			// Go has weird Mod behaviour compared to python -6%4 is 2 in python, -2 here.
@@ -53,22 +53,18 @@ func main() {
 			}
 
 			if bearing == 0 {
-				pos_y = pos_y + distance
+				posY = posY + distance
 			}
 			if bearing == 1 {
-				pos_x = pos_x + distance
+				posX = posX + distance
 			}
 			if bearing == 2 {
-				pos_y = pos_y - distance
+				posY = posY - distance
 			}
 			if bearing == 3 {
-				pos_x = pos_x - distance
+				posX = posX - distance
 			}
 		}
-		fmt.Print(math.Abs(pos_x) + math.Abs(pos_y))
+		fmt.Print(math.Abs(posX) + math.Abs(posY))
 	}
-
-	// if err := scanner.Err(); err != nil {
-	// 	panic(err)
-	// }
 }
